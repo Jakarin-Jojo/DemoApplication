@@ -61,6 +61,7 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio) {
             when {
                 uiState.isLoading -> {
                     showLoading()
+                    binding.textVieWError.text = ""
                 }
 
                 uiState.error != null -> {
@@ -69,10 +70,14 @@ class PortfolioFragment : Fragment(R.layout.fragment_portfolio) {
                     Toast.makeText(context, uiState.error.toString(), Toast.LENGTH_LONG).show()
                 }
 
-                uiState.data != null -> {
+                !uiState.data.isNullOrEmpty() -> {
                     hideLoading()
                     portfolioAdapter.submitList(uiState.data)
                     binding.textVieWError.text = ""
+                }
+                else ->{
+                    hideLoading()
+                    binding.textVieWError.text = getString(R.string.no_data_message)
                 }
             }
         }

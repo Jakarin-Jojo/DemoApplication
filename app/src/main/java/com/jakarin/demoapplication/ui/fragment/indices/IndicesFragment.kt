@@ -62,18 +62,26 @@ class IndicesFragment : Fragment(R.layout.fragment_indices) {
     private fun observeIndicesData() {
         indicesViewModel.indicesLiveData.observe(viewLifecycleOwner) { uiState ->
             when {
-                uiState.isLoading -> showLoading()
+                uiState.isLoading -> {
+                    showLoading()
+                    binding.textVieWError.text = ""
+                }
                 uiState.error != null -> {
                     hideLoading()
                     binding.textVieWError.text = getString(R.string.error_message_general)
                     Toast.makeText(context, uiState.error.toString(), Toast.LENGTH_LONG).show()
                 }
 
-                uiState.data != null -> {
+                !uiState.data?.data.isNullOrEmpty()-> {
                     hideLoading()
                     binding.textVieWError.text = ""
-                    indicesAdapter.submitList(uiState.data.data)
+                    indicesAdapter.submitList(uiState.data?.data)
                 }
+                else ->{
+                    hideLoading()
+                    binding.textVieWError.text = getString(R.string.no_data_message)
+                }
+
             }
         }
     }
