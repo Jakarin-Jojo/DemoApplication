@@ -11,8 +11,8 @@ import com.jakarin.demoapplication.databinding.FragmentMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFragment : Fragment(R.id.main_fragment) {
-    lateinit var binding: FragmentMainBinding
+class MainFragment : Fragment(R.layout.fragment_main) {
+    private lateinit var binding: FragmentMainBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

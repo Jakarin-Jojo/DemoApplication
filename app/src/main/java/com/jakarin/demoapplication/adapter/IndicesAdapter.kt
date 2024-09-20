@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jakarin.demoapplication.databinding.ListIndicesItemBinding
 import com.jakarin.demoapplication.model.Data
 import com.jakarin.demoapplication.utils.ColorUtils
+import java.util.Locale
 import javax.inject.Inject
 
 class IndicesAdapter @Inject constructor() :
@@ -19,7 +20,7 @@ class IndicesAdapter @Inject constructor() :
         fun bind(data: Data) {
             binding.apply {
                 textViewShortName.text = data.shortName
-                texViewPrice.text = String.format("%,.2f", data.price)
+                texViewPrice.text = String.format(Locale.getDefault(), "%,.2f", data.price)
 
                 textViewChange.apply {
                     text = if (data.change > 0) {

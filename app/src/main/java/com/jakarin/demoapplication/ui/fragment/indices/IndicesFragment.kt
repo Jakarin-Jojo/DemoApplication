@@ -17,8 +17,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class IndicesFragment : Fragment(R.id.indices_fragment) {
-    lateinit var binding: FragmentIndicesBinding
+class IndicesFragment : Fragment(R.layout.fragment_indices) {
+    private lateinit var binding: FragmentIndicesBinding
     private val indicesViewModel: IndicesViewModel by viewModels()
 
     @Inject

@@ -17,8 +17,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PortfolioFragment : Fragment(R.id.portfolio_fragment) {
-    lateinit var binding: FragmentPortfolioBinding
+class PortfolioFragment : Fragment(R.layout.fragment_portfolio) {
+    private lateinit var binding: FragmentPortfolioBinding
     private val portfolioViewModel: PortfolioViewModel by viewModels()
 
     @Inject

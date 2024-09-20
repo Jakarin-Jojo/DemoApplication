@@ -11,6 +11,7 @@ import com.jakarin.demoapplication.R
 import com.jakarin.demoapplication.databinding.ListPortfolioItemBinding
 import com.jakarin.demoapplication.model.PortfolioItem
 import com.jakarin.demoapplication.utils.ColorUtils
+import java.util.Locale
 import javax.inject.Inject
 
 class PortfolioAdapter @Inject constructor() :
@@ -22,11 +23,15 @@ class PortfolioAdapter @Inject constructor() :
             binding.apply {
                 textViewTitle.text = portfolioItem.title
                 textViewWithdrawablePoint.text =
-                    String.format("%.2f", portfolioItem.withdrawablePoint)
+                    String.format(Locale.getDefault(), "%.2f", portfolioItem.withdrawablePoint)
                 textViewPendingPoint.apply {
                     when {
                         portfolioItem.pendingPoint > 0 -> {
-                            text = String.format("%.2f", portfolioItem.pendingPoint)
+                            text = String.format(
+                                Locale.getDefault(),
+                                "%.2f",
+                                portfolioItem.pendingPoint,
+                            )
                         }
                     }
                 }
