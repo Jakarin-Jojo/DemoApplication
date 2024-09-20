@@ -67,9 +67,5 @@ class IndicesAdapter @Inject constructor() :
         override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
             return oldItem == newItem
         }
-
     }
-
 }
-
-

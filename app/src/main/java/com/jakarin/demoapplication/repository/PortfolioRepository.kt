@@ -13,12 +13,13 @@ class PortfolioRepository @Inject constructor(
 ) {
     suspend fun getPortfolio(): List<PortfolioItem> {
         return try {
-            val inputStream = context.assets.open("portfolio.json")
-            val jsonString = inputStream.bufferedReader().use { it.readText() }
+            val jsonString = context.assets.open("portfolio.json").use { inputStream ->
+                inputStream.bufferedReader().use { it.readText() }
+            }
             val listType = object : TypeToken<List<PortfolioItem>>() {}.type
             Gson().fromJson(jsonString, listType)
         } catch (e: Exception) {
-            Log.e("getIndicesData", "File not found: ${e.message}")
+            Log.e("getPortfolio", "Error reading portfolio.json: ${e.message}", e)
             throw e
         }
     }

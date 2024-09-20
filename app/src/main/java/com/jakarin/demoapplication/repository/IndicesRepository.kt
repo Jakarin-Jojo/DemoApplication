@@ -1,6 +1,7 @@
 package com.jakarin.demoapplication.repository
 
 import android.content.Context
+import android.util.Log
 import com.google.gson.Gson
 import com.jakarin.demoapplication.model.Indices
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -11,10 +12,12 @@ class IndicesRepository @Inject constructor(
 ) {
     suspend fun getIndicesData(): Indices {
         return try {
-            val inputStream = context.assets.open("indices.json")
-            val jsonString = inputStream.bufferedReader().use { it.readText() }
+            val jsonString = context.assets.open("indices.json").use { inputStream ->
+                inputStream.bufferedReader().use { it.readText() }
+            }
             Gson().fromJson(jsonString, Indices::class.java)
         } catch (e: Exception) {
+            Log.e("getIndicesData", "Error reading indices.json: ${e.message}", e)
             throw e
         }
     }

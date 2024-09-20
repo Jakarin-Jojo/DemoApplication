@@ -14,23 +14,23 @@ import javax.inject.Inject
 class PortfolioViewModel @Inject constructor(
     private val portfolioRepository: PortfolioRepository,
 ) : ViewModel() {
-    private val _portfolioPortfolioUiState = MutableLiveData<PortfolioUiState>()
+    private val _portfolioUiState = MutableLiveData<PortfolioUiState>()
     val portfolioUiState: LiveData<PortfolioUiState>
-        get() = _portfolioPortfolioUiState
+        get() = _portfolioUiState
 
     init {
         loadData()
     }
 
     private fun loadData() {
-        _portfolioPortfolioUiState.value = PortfolioUiState(isLoading = true)
+        _portfolioUiState.value = PortfolioUiState(isLoading = true)
         viewModelScope.launch {
             try {
                 val data = portfolioRepository.getPortfolio()
-                _portfolioPortfolioUiState.value = (PortfolioUiState(data = data))
+                _portfolioUiState.value = (PortfolioUiState(data = data, isLoading = false))
             } catch (e: Exception) {
-                _portfolioPortfolioUiState.value = (PortfolioUiState(error = e.message))
-                Log.e("IndicesViewModel", "${e.message}")
+                _portfolioUiState.value = (PortfolioUiState(error = e.message, isLoading = false))
+                Log.e("PortfolioViewModel", "Error loading portfolio", e)
             }
         }
     }

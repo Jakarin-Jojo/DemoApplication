@@ -29,14 +29,15 @@ class IndicesViewModel @Inject constructor(
 
     private fun loadData() {
         _indicesLivedata.value = IndicesUiState(isLoading = true)
+
         viewModelScope.launch {
             try {
                 val data = indicesRepository.getIndicesData()
                 _lastUpdateLivedata.value = "Last Update ${formatDate(data.lastUpdate)}"
-                _indicesLivedata.value = IndicesUiState(data = data)
+                _indicesLivedata.value = IndicesUiState(data = data, isLoading = false)
             } catch (e: Exception) {
-                Log.e("IndicesViewModel", "${e.message}")
-                _indicesLivedata.value = IndicesUiState(error = e.message)
+                Log.e("IndicesViewModel", "Error loading indices", e)
+                _indicesLivedata.value = IndicesUiState(error = e.message, isLoading = false)
             }
         }
     }
@@ -49,7 +50,7 @@ class IndicesViewModel @Inject constructor(
             val date = inputFormat.parse(dateString)
             date?.let { outputFormat.format(it) }
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e("IndicesViewModel", "Error parsing date: $dateString", e)
             null
         }
     }
