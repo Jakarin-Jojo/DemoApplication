@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/demo_navigation"
+    app:startDestination="@id/main_fragment">
+
+    <fragment
+        android:id="@+id/main_fragment"
+        android:name="com.jakarin.demoapplication.ui.fragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_indicesFragment"
+            app:destination="@id/indices_fragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_portfolioFragment"
+            app:destination="@id/portfolio_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/indices_fragment"
+        android:name="com.jakarin.demoapplication.ui.fragment.indices.IndicesFragment"
+        android:label="fragment_indices"
+        tools:layout="@layout/fragment_indices">
+        <action
+            android:id="@+id/action_indices_fragment_to_main_fragment"
+            app:destination="@id/main_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/portfolio_fragment"
+        android:name="com.jakarin.demoapplication.ui.fragment.portfolio.PortfolioFragment"
+        android:label="fragment_portfolio"
+        tools:layout="@layout/fragment_portfolio">
+        <action
+            android:id="@+id/action_portfolio_fragment_to_main_fragment"
+            app:destination="@id/main_fragment" />
+    </fragment>
+</navigation>

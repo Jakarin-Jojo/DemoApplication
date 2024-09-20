@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DemoApplication</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigate_to_indices_button">go to Indices</string>
+    <string name="navigate_to_portfolio_button">go to Portfolio</string>
+    <string name="error_message_general">Something went wrong!</string>
 </resources>

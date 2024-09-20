@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background_indices">#303440</color>
+    <color name="background_toolbar_indices">#1e7de8</color>
+    <color name="background_change_down">#ff4e67</color>
+    <color name="background_change_up">#47dc81</color>
+    <color name="background_toolbar_portfolio">#ff4e3a</color>
 </resources>
